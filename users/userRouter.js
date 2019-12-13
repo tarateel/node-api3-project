@@ -1,6 +1,8 @@
 const express = require('express');
 const users = require('../users/userDb');
 const posts = require('../posts/postRouter');
+const { validateUser, validateUserId } = require('../middleware/validateUser');
+const { validatePost } = require('../middleware/validatePost');2
 
 const router = express.Router();
 

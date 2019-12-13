@@ -65,7 +65,6 @@ router.put('/:id', validatePostId(), (req, res) => {
 });
 
 // custom middleware
-
 function validatePostId(req, res, next) {
   return (req, res, next) => {
     if (!req.body) {

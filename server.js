@@ -2,11 +2,8 @@
 const express = require('express');
 const helmet = require('helmet');
 const logger = require('./middleware/logger');
-const validateUser = require('./middleware/validateUser');
-const validateUserId = require('./middleware/validateUser');
-const validatePost = require('./middleware/validatePost');
 const userRouter = require('./users/userRouter');
-const postRouter = require('./posts/postRouter');
+// const postRouter = require('./posts/postRouter');
 const welcomeRouter = require('./welcome/welcomeRouter');
 
 // global object
@@ -18,7 +15,16 @@ server.use(helmet());
 //custom middleware
 server.use(logger());
 server.use(validateUser());
-server.use
+server.use(validateUserId());
+server.use(validatePost());
 
+server.use(express.json());
+server.use("/", welcomeRouter);
+server.use("/api/users', userRouter")
+
+server.get('/api/users', (req, res) => {
+  res.send(`
+  <h2>User Posts</h2>`)
+});
 
 module.exports = server;
