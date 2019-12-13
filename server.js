@@ -1,13 +1,24 @@
+// library
 const express = require('express');
+const helmet = require('helmet');
+const logger = require('./middleware/logger');
+const validateUser = require('./middleware/validateUser');
+const validateUserId = require('./middleware/validateUser');
+const validatePost = require('./middleware/validatePost');
+const userRouter = require('./users/userRouter');
+const postRouter = require('./posts/postRouter');
+const welcomeRouter = require('./welcome/welcomeRouter');
 
+// global object
 const server = express();
 
-server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`);
-});
+// 3rd-party middleware from npm
+server.use(helmet());
 
 //custom middleware
+server.use(logger());
+server.use(validateUser());
+server.use
 
-function logger(req, res, next) {}
 
 module.exports = server;
